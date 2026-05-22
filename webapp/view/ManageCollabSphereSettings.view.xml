@@ -1,0 +1,63 @@
+<mvc:View xmlns:layout="sap.ui.layout"
+	xmlns:f="sap.f" controllerName="comcollabspheresettings.controller.ManageCollabSphereSettings"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:tnt="sap.tnt">
+	<tnt:ToolPage >
+		<tnt:header >
+			<tnt:ToolHeader height="75px" class="toolHeader">
+				<Button icon="sap-icon://menu2" press=".onSideNavPress"></Button>
+				<ToolbarSpacer width="20px"></ToolbarSpacer>
+				<Title text="Manage CollabSphere Settings"></Title>
+			</tnt:ToolHeader>
+		</tnt:header>
+		<tnt:sideContent>
+			<tnt:SideNavigation expanded="true" id="sideNavigation">
+				<tnt:NavigationList itemSelect=".onNavigationItemPress">
+					<tnt:NavigationListItem text="Department" icon="sap-icon://company-view" key="department"></tnt:NavigationListItem>
+				</tnt:NavigationList>
+			</tnt:SideNavigation>
+		</tnt:sideContent>
+		<tnt:mainContents>
+			<f:DynamicPage id="departmentPage" visible="true">
+				<f:header>
+					<f:DynamicPageHeader pinnable="false">
+						<HBox width="100%" alignItems="Center" justifyContent="SpaceBetween">
+							<Title text="Department"></Title>
+							<Button text="Add" icon="sap-icon://add" type="Emphasized" press=".onAddDepartment"></Button>
+						</HBox>
+					</f:DynamicPageHeader>
+				</f:header>
+				<f:content>
+					<ScrollContainer >
+						<Table id="departmentTable" items="{collabSphereModel>/collabSphereDepartment}">
+							<columns>
+								<Column >
+									<Text text="Department"></Text>
+								</Column>
+								<Column >
+									<Text text="Active Status"></Text>
+								</Column>
+								<Column >
+									<Text text="Actions"></Text>
+								</Column>
+							</columns>
+							<items>
+								<ColumnListItem>
+									<cells>
+										<Text text="{collabSphereModel>departmentName}"></Text>
+										<Text text="{path: 'collabSphereModel>activeStatus', formatter: '.activeStatus'}"></Text>
+										<HBox alignItems="Center">
+											<Button icon="sap-icon://edit" type="Transparent"></Button>
+											<Button icon="sap-icon://delete" type="Transparent"></Button>
+										</HBox>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+					</ScrollContainer>
+				</f:content>
+			</f:DynamicPage>
+		</tnt:mainContents>
+	</tnt:ToolPage>
+</mvc:View>

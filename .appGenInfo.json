@@ -1,0 +1,23 @@
+{
+  "generationParameters": {
+    "generationDate": "Tue May 19 2026 10:18:00 GMT+0000 (Coordinated Universal Time)",
+    "generatorPlatform": "SAP Business Application Studio",
+    "serviceType": "SAP System (ABAP On-Premise)",
+    "metadataFilename": "",
+    "serviceUrl": "https://404d3851trial-dev-collabsphere-cap-app-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/collabsphere",
+    "appName": "comcollabspheresettings",
+    "appTitle": "Manage CollabSphere Settings",
+    "appDescription": "An SAP Fiori application.",
+    "appNamespace": "",
+    "ui5Theme": "sap_horizon",
+    "ui5Version": "1.148.0",
+    "enableEslint": true,
+    "enableTypeScript": false,
+    "showMockDataInfo": true,
+    "generatorVersion": "1.24.0",
+    "template": "Basic V4",
+    "generatorName": "SAP Fiori Application Generator",
+    "entityRelatedConfig": [],
+    "launchText": "To launch the generated application, run the following from the generated application root folder:\n\n```\n    npm start\n```"
+  }
+}

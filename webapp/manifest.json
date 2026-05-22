@@ -1,0 +1,135 @@
+{
+  "_version": "1.84.0",
+  "sap.app": {
+    "id": "comcollabspheresettings",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.24.0",
+      "toolsId": "ff70e678-1f5b-489c-bf0f-2b7ba3e409be"
+    },
+    "dataSources": {
+      "mainService": {
+        "uri": "/odata/v4/collabsphere/",
+        "type": "OData",
+        "settings": {
+          "annotations": [],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "4.01"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "collabsphereObject-Display": {
+          "semanticObject": "collabsphereObject",
+          "action": "Display",
+          "title": "{{collabsphereObject-Display.flpTitle}}",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled":false,
+    "dependencies": {
+      "minUI5Version": "1.148.0",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "comcollabspheresettings.i18n.i18n"
+        }
+      },
+      "collabSphereModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequests": true
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "comcollabspheresettings.view",
+        "async": true,
+        "viewPath": "comcollabspheresettings.view"
+      },
+      "routes": [
+        {
+          "name": "RouteManageCollabSphereSettings",
+          "pattern": ":?query:",
+          "target": [
+            "TargetManageCollabSphereSettings"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetManageCollabSphereSettings": {
+          "id": "ManageCollabSphereSettings",
+          "name": "ManageCollabSphereSettings"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "comcollabspheresettings.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "comcollabspheresettings"
+  }
+}

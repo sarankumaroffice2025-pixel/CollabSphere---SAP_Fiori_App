@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Dialog  showHeader="true" title="Add Department" draggable="true">
+        <content>
+            <HBox alignItems="Center" class="sapUiSmallMargin" justifyContent="SpaceBetween" width="350px">
+                <Label id="departmentNameLabel" text="Department Name" labelFor="departmentNameInput" required="true"></Label>
+                <Input id="departmentNameInput" type="Text"></Input>
+            </HBox>
+        </content>
+        <beginButton>
+            <Button text="Create" type="Emphasized" press=".onCreateDepartment"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Default" press=".onCancelDepartment"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

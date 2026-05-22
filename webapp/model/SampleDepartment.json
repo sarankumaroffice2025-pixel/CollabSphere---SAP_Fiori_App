@@ -1,0 +1,84 @@
+{
+  "Department": [
+    {
+      "departmentName": "Human Resources",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Finance",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "IT Support",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Sales",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Marketing",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Operations",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Administration",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Procurement",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Quality Assurance",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Research and Development",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Customer Support",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Logistics",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Legal",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Security",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Training",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Production",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Engineering",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Business Development",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Public Relations",
+      "activeStatus": true
+    },
+    {
+      "departmentName": "Compliance",
+      "activeStatus": false
+    }
+  ]
+}

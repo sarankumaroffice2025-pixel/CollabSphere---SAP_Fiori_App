@@ -1,0 +1,1217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="collabsphere" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotation Term="Core.Links">
+                <Collection>
+                    <Record>
+                        <PropertyValue Property="rel" String="author"/>
+                        <PropertyValue Property="href" String="https://cap.cloud.sap"/>
+                    </Record>
+                </Collection>
+            </Annotation>
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="collabSphereEmployee" EntityType="collabsphere.collabSphereEmployee">
+                    <NavigationPropertyBinding Path="department" Target="collabSphereDepartment"/>
+                    <NavigationPropertyBinding Path="position" Target="collabSphereEmployeePosition"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereProject" EntityType="collabsphere.collabSphereProject">
+                    <NavigationPropertyBinding Path="corporate" Target="collabSphereCorporate"/>
+                    <NavigationPropertyBinding Path="clients" Target="collabSphereProjectClient"/>
+                    <NavigationPropertyBinding Path="approvers" Target="collabSphereProjectAprrover"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereProjectClient" EntityType="collabsphere.collabSphereProjectClient">
+                    <NavigationPropertyBinding Path="project" Target="collabSphereProject"/>
+                    <NavigationPropertyBinding Path="client" Target="collabSphereClient"/>
+                    <NavigationPropertyBinding Path="corporate" Target="collabSphereCorporate"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereProjectAprrover" EntityType="collabsphere.collabSphereProjectAprrover">
+                    <NavigationPropertyBinding Path="project" Target="collabSphereProject"/>
+                    <NavigationPropertyBinding Path="approver" Target="collabSphereEmployee"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereProjectTeam" EntityType="collabsphere.collabSphereProjectTeam">
+                    <NavigationPropertyBinding Path="project" Target="collabSphereProject"/>
+                    <NavigationPropertyBinding Path="employee" Target="collabSphereEmployee"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereProjectTask" EntityType="collabsphere.collabSphereProjectTask">
+                    <NavigationPropertyBinding Path="project" Target="collabSphereProject"/>
+                    <NavigationPropertyBinding Path="assignee" Target="collabSphereEmployee"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereTaskComment" EntityType="collabsphere.collabSphereTaskComment">
+                    <NavigationPropertyBinding Path="task" Target="collabSphereProjectTask"/>
+                    <NavigationPropertyBinding Path="assignee" Target="collabSphereEmployee"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereAsset" EntityType="collabsphere.collabSphereAsset"/>
+                <EntitySet Name="collabSphereCorporate" EntityType="collabsphere.collabSphereCorporate"/>
+                <EntitySet Name="collabSphereClient" EntityType="collabsphere.collabSphereClient">
+                    <NavigationPropertyBinding Path="corporate" Target="collabSphereCorporate"/>
+                </EntitySet>
+                <EntitySet Name="collabSphereDepartment" EntityType="collabsphere.collabSphereDepartment"/>
+                <EntitySet Name="collabSphereEmployeePosition" EntityType="collabsphere.collabSphereEmployeePosition">
+                    <NavigationPropertyBinding Path="department" Target="collabSphereDepartment"/>
+                </EntitySet>
+                <ActionImport Name="createEmployeeDetails" Action="collabsphere.createEmployeeDetails"/>
+                <ActionImport Name="accessEmployeeDetails" Action="collabsphere.accessEmployeeDetails"/>
+                <ActionImport Name="createDepartment" Action="collabsphere.createDepartment"/>
+                <ActionImport Name="updateDepartment" Action="collabsphere.updateDepartment"/>
+                <ActionImport Name="createEmployeePosition" Action="collabsphere.createEmployeePosition"/>
+                <ActionImport Name="updateEmployeePosition" Action="collabsphere.updateEmployeePosition"/>
+                <ActionImport Name="editEmployeeDetails" Action="collabsphere.editEmployeeDetails"/>
+                <ActionImport Name="deleteEmployeeDetails" Action="collabsphere.deleteEmployeeDetails"/>
+                <ActionImport Name="sendMail" Action="collabsphere.sendMail"/>
+                <ActionImport Name="createCorporate" Action="collabsphere.createCorporate"/>
+                <ActionImport Name="updateCorporate" Action="collabsphere.updateCorporate"/>
+                <ActionImport Name="createClient" Action="collabsphere.createClient"/>
+                <ActionImport Name="updateClient" Action="collabsphere.updateClient"/>
+                <ActionImport Name="createProject" Action="collabsphere.createProject"/>
+                <ActionImport Name="updateProject" Action="collabsphere.updateProject"/>
+                <ActionImport Name="accessProjectDetails" Action="collabsphere.accessProjectDetails"/>
+                <ActionImport Name="deleteProject" Action="collabsphere.deleteProject"/>
+                <ActionImport Name="createProjectClient" Action="collabsphere.createProjectClient"/>
+                <ActionImport Name="updateProjectClient" Action="collabsphere.updateProjectClient"/>
+                <ActionImport Name="createProjectApprover" Action="collabsphere.createProjectApprover"/>
+                <ActionImport Name="updateProjectApprover" Action="collabsphere.updateProjectApprover"/>
+                <ActionImport Name="createProjectTeam" Action="collabsphere.createProjectTeam"/>
+                <ActionImport Name="addProjectTeamMember" Action="collabsphere.addProjectTeamMember"/>
+                <ActionImport Name="updateProjectTeam" Action="collabsphere.updateProjectTeam"/>
+                <ActionImport Name="createProjectTask" Action="collabsphere.createProjectTask"/>
+                <ActionImport Name="updateProjectTask" Action="collabsphere.updateProjectTask"/>
+            </EntityContainer>
+            <EntityType Name="collabSphereEmployee">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="userName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="firstName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="lastName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="fullName" Type="Edm.String" MaxLength="200"/>
+                <Property Name="email" Type="Edm.String" MaxLength="100"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+                <NavigationProperty Name="department" Type="collabsphere.collabSphereDepartment">
+                    <ReferentialConstraint Property="department_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="department_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="position" Type="collabsphere.collabSphereEmployeePosition">
+                    <ReferentialConstraint Property="position_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="position_ID" Type="Edm.Guid"/>
+                <Property Name="isActive" Type="Edm.Boolean" DefaultValue="true"/>
+                <Property Name="profile" Type="Edm.Binary"/>
+                <Property Name="profileMediaType" Type="Edm.String" MaxLength="150"/>
+            </EntityType>
+            <EntityType Name="collabSphereProject">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="startDate" Type="Edm.Date"/>
+                <Property Name="endDate" Type="Edm.Date"/>
+                <Property Name="approvedStatus" Type="Edm.String"/>
+                <Property Name="budget" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+                <NavigationProperty Name="corporate" Type="collabsphere.collabSphereCorporate">
+                    <ReferentialConstraint Property="corporate_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="corporate_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="clients" Type="Collection(collabsphere.collabSphereProjectClient)" Partner="project"/>
+                <NavigationProperty Name="approvers" Type="Collection(collabsphere.collabSphereProjectAprrover)" Partner="project"/>
+                <Property Name="activeStatus" Type="Edm.Boolean" DefaultValue="true"/>
+            </EntityType>
+            <EntityType Name="collabSphereProjectClient">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="project" Type="collabsphere.collabSphereProject" Partner="clients">
+                    <ReferentialConstraint Property="project_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="project_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="client" Type="collabsphere.collabSphereClient">
+                    <ReferentialConstraint Property="client_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="client_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="corporate" Type="collabsphere.collabSphereCorporate">
+                    <ReferentialConstraint Property="corporate_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="corporate_ID" Type="Edm.Guid"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="collabSphereProjectAprrover">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="project" Type="collabsphere.collabSphereProject" Partner="approvers">
+                    <ReferentialConstraint Property="project_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="project_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="approver" Type="collabsphere.collabSphereEmployee">
+                    <ReferentialConstraint Property="approver_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="approver_ID" Type="Edm.Guid"/>
+                <Property Name="approvalStatus" Type="Edm.String"/>
+                <Property Name="comment" Type="Edm.String"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="collabSphereProjectTeam">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="project" Type="collabsphere.collabSphereProject">
+                    <ReferentialConstraint Property="project_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="project_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="employee" Type="collabsphere.collabSphereEmployee">
+                    <ReferentialConstraint Property="employee_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="employee_ID" Type="Edm.Guid"/>
+                <Property Name="employeeName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="collabSphereProjectTask">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <NavigationProperty Name="project" Type="collabsphere.collabSphereProject">
+                    <ReferentialConstraint Property="project_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="project_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="assignee" Type="collabsphere.collabSphereEmployee">
+                    <ReferentialConstraint Property="assignee_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="assignee_ID" Type="Edm.Guid"/>
+                <Property Name="content" Type="Edm.String"/>
+                <Property Name="activityStatus" Type="Edm.String" DefaultValue="initiated"/>
+                <Property Name="priority" Type="Edm.String" DefaultValue="medium"/>
+                <Property Name="creatorName" Type="Edm.String"/>
+                <Property Name="modifierName" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="collabSphereTaskComment">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <NavigationProperty Name="task" Type="collabsphere.collabSphereProjectTask">
+                    <ReferentialConstraint Property="task_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="task_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="assignee" Type="collabsphere.collabSphereEmployee">
+                    <ReferentialConstraint Property="assignee_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="assignee_ID" Type="Edm.Guid"/>
+                <Property Name="content" Type="Edm.Binary"/>
+            </EntityType>
+            <EntityType Name="collabSphereAsset">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="assetid" Type="Edm.String" MaxLength="100"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="assetType" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="collabSphereCorporate">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="corporateName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="corporateURL" Type="Edm.String" MaxLength="100"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="activeStatus" Type="Edm.Boolean" DefaultValue="true"/>
+            </EntityType>
+            <EntityType Name="collabSphereClient">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="clientFirstName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="clientLastName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="clientFullName" Type="Edm.String" MaxLength="200"/>
+                <Property Name="clientEmail" Type="Edm.String" MaxLength="100"/>
+                <Property Name="activeStatus" Type="Edm.Boolean" DefaultValue="true"/>
+                <NavigationProperty Name="corporate" Type="collabsphere.collabSphereCorporate">
+                    <ReferentialConstraint Property="corporate_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="corporate_ID" Type="Edm.Guid"/>
+                <Property Name="creatorName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="modifierName" Type="Edm.String" MaxLength="100"/>
+            </EntityType>
+            <EntityType Name="collabSphereDepartment">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="departmentName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="activeStatus" Type="Edm.Boolean" DefaultValue="true"/>
+            </EntityType>
+            <EntityType Name="collabSphereEmployeePosition">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="positionName" Type="Edm.String" MaxLength="100"/>
+                <NavigationProperty Name="department" Type="collabsphere.collabSphereDepartment">
+                    <ReferentialConstraint Property="department_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="department_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <ComplexType Name="return_collabsphere_createEmployeeDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_EmployeeDetails">
+                <Property Name="firstName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="lastName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="email" Type="Edm.String" MaxLength="100"/>
+                <Property Name="department" Type="Edm.String" MaxLength="100"/>
+                <Property Name="position" Type="Edm.String" MaxLength="100"/>
+                <Property Name="resume" Type="Collection(collabsphere.collabSphere_AttachmentDetails)" Nullable="true"/>
+                <Property Name="profile" Type="Edm.Binary"/>
+                <Property Name="profileMediaType" Type="Edm.String" MaxLength="150"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_AttachmentDetails">
+                <Property Name="fileName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="mediaType" Type="Edm.String" MaxLength="100"/>
+                <Property Name="file" Type="Edm.Binary"/>
+                <Property Name="fileSize" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_accessEmployeeDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="userName" Type="Edm.String"/>
+                <Property Name="firstName" Type="Edm.String"/>
+                <Property Name="lastName" Type="Edm.String"/>
+                <Property Name="fullName" Type="Edm.String"/>
+                <Property Name="email" Type="Edm.String"/>
+                <Property Name="position" Type="Edm.String"/>
+                <Property Name="isActive" Type="Edm.Boolean"/>
+                <Property Name="resume" Type="collabsphere.collabSphere_AttachmentDetails"/>
+                <Property Name="profile" Type="Edm.Binary"/>
+                <Property Name="profileMediaType" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createDepartment">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_DepartmentDetails">
+                <Property Name="departmentName" Type="Edm.String" MaxLength="100"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateDepartment">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateDepartmentDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="departmentName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="activeStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createEmployeePosition">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_EmployeePositionDetails">
+                <Property Name="positionName" Type="Edm.String"/>
+                <Property Name="departmentID" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateEmployeePosition">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateEmployeePositionDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="positionName" Type="Edm.String"/>
+                <Property Name="departmentID" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_editEmployeeDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_updateEmployeeDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="firstName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="lastName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="email" Type="Edm.String" MaxLength="100"/>
+                <Property Name="department" Type="Edm.String" MaxLength="100"/>
+                <Property Name="position" Type="Edm.String" MaxLength="100"/>
+                <Property Name="resume" Type="Collection(collabsphere.collabSphere_AttachmentDetails)" Nullable="true"/>
+                <Property Name="profile" Type="Edm.Binary"/>
+                <Property Name="profileMediaType" Type="Edm.String" MaxLength="150"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_deleteEmployeeDetails">
+                <Property Name="deletetionStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_sendMail">
+                <Property Name="mailSendStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_MailDetails">
+                <Property Name="to" Type="Collection(Edm.String)" Nullable="true"/>
+                <Property Name="cc" Type="Collection(Edm.String)" Nullable="true"/>
+                <Property Name="bcc" Type="Collection(Edm.String)" Nullable="true"/>
+                <Property Name="subject" Type="Edm.String"/>
+                <Property Name="body" Type="Edm.String"/>
+                <Property Name="attachments" Type="Collection(collabsphere.collabSphere_MailAttachment)" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_MailAttachment">
+                <Property Name="fileName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="mediaType" Type="Edm.String" MaxLength="100"/>
+                <Property Name="file" Type="Edm.Binary"/>
+                <Property Name="fileSize" Type="Edm.Int32"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createCorporate">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_CorporateDetails">
+                <Property Name="corporateName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="corporateURL" Type="Edm.String" MaxLength="100"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateCorporate">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateCorporateDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="corporateName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="corporateURL" Type="Edm.String" MaxLength="100"/>
+                <Property Name="activeStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createClient">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_ClientDetails">
+                <Property Name="clientFirstName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="clientLastName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="clientEmail" Type="Edm.String" MaxLength="100"/>
+                <Property Name="corporateID" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateClient">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateClientDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="clientFirstName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="clientLastName" Type="Edm.String" MaxLength="100"/>
+                <Property Name="clientEmail" Type="Edm.String" MaxLength="100"/>
+                <Property Name="corporateID" Type="Edm.String"/>
+                <Property Name="activeStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createProject">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_ProjectDetails">
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="startDate" Type="Edm.Date"/>
+                <Property Name="endDate" Type="Edm.Date"/>
+                <Property Name="budget" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="corporateID" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateProject">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateProjectDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="startDate" Type="Edm.Date"/>
+                <Property Name="endDate" Type="Edm.Date"/>
+                <Property Name="budget" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="corporateID" Type="Edm.String"/>
+                <Property Name="approvedStatus" Type="Edm.String"/>
+                <Property Name="activeStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_accessProjectDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="startDate" Type="Edm.Date"/>
+                <Property Name="endDate" Type="Edm.Date"/>
+                <Property Name="budget" Type="Edm.Decimal" Precision="15" Scale="2"/>
+                <Property Name="corporateID" Type="Edm.String"/>
+                <Property Name="approvedStatus" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_deleteProject">
+                <Property Name="deletetionStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createProjectClient">
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_ProjectClientDetails">
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="corporateID" Type="Edm.String"/>
+                <Property Name="clientID" Type="Collection(Edm.String)" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateProjectClient">
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateProjectClientDetails">
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="corporateID" Type="Edm.String"/>
+                <Property Name="clientID" Type="Collection(Edm.String)" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createProjectApprover">
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_ProjectApproverDetails">
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="approversData" Type="Collection(Edm.String)" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateProjectApprover">
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateProjectApproverDetails">
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="approversData" Type="Collection(collabsphere.collabSphere_UpdateProjectApproverData)" Nullable="true"/>
+                <Property Name="comment" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateProjectApproverData">
+                <Property Name="approverID" Type="Edm.String"/>
+                <Property Name="approvalStatus" Type="Edm.String"/>
+                <Property Name="comment" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createProjectTeam">
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_ProjectTeamDetails">
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="employeeID" Type="Collection(Edm.String)" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_addProjectTeamMember">
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateProjectTeam">
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_UpdateProjectTeamDetails">
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="employeeID" Type="Collection(Edm.String)" Nullable="true"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_createProjectTask">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="creationStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_ProjectTaskDetails">
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="assigneeID" Type="Edm.String"/>
+                <Property Name="content" Type="Edm.String"/>
+                <Property Name="priority" Type="Edm.String"/>
+            </ComplexType>
+            <ComplexType Name="return_collabsphere_updateProjectTask">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="updateStatus" Type="Edm.Boolean"/>
+            </ComplexType>
+            <ComplexType Name="collabSphere_updateProjectTaskDetails">
+                <Property Name="ID" Type="Edm.String"/>
+                <Property Name="title" Type="Edm.String"/>
+                <Property Name="description" Type="Edm.String"/>
+                <Property Name="projectID" Type="Edm.String"/>
+                <Property Name="assigneeID" Type="Edm.String"/>
+                <Property Name="content" Type="Edm.String"/>
+                <Property Name="priority" Type="Edm.String"/>
+                <Property Name="activityStatus" Type="Edm.String"/>
+            </ComplexType>
+            <Action Name="createEmployeeDetails" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_EmployeeDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createEmployeeDetails"/>
+            </Action>
+            <Action Name="accessEmployeeDetails" IsBound="false">
+                <Parameter Name="ID" Type="Edm.String"/>
+                <ReturnType Type="collabsphere.return_collabsphere_accessEmployeeDetails"/>
+            </Action>
+            <Action Name="createDepartment" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_DepartmentDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createDepartment"/>
+            </Action>
+            <Action Name="updateDepartment" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateDepartmentDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateDepartment"/>
+            </Action>
+            <Action Name="createEmployeePosition" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_EmployeePositionDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createEmployeePosition"/>
+            </Action>
+            <Action Name="updateEmployeePosition" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateEmployeePositionDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateEmployeePosition"/>
+            </Action>
+            <Action Name="editEmployeeDetails" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_updateEmployeeDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_editEmployeeDetails"/>
+            </Action>
+            <Action Name="deleteEmployeeDetails" IsBound="false">
+                <Parameter Name="ID" Type="Edm.String"/>
+                <ReturnType Type="collabsphere.return_collabsphere_deleteEmployeeDetails"/>
+            </Action>
+            <Action Name="sendMail" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_MailDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_sendMail"/>
+            </Action>
+            <Action Name="createCorporate" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_CorporateDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createCorporate"/>
+            </Action>
+            <Action Name="updateCorporate" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateCorporateDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateCorporate"/>
+            </Action>
+            <Action Name="createClient" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_ClientDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createClient"/>
+            </Action>
+            <Action Name="updateClient" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateClientDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateClient"/>
+            </Action>
+            <Action Name="createProject" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_ProjectDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createProject"/>
+            </Action>
+            <Action Name="updateProject" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateProjectDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateProject"/>
+            </Action>
+            <Action Name="accessProjectDetails" IsBound="false">
+                <Parameter Name="ID" Type="Edm.String"/>
+                <ReturnType Type="collabsphere.return_collabsphere_accessProjectDetails"/>
+            </Action>
+            <Action Name="deleteProject" IsBound="false">
+                <Parameter Name="ID" Type="Edm.String"/>
+                <ReturnType Type="collabsphere.return_collabsphere_deleteProject"/>
+            </Action>
+            <Action Name="createProjectClient" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_ProjectClientDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createProjectClient"/>
+            </Action>
+            <Action Name="updateProjectClient" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateProjectClientDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateProjectClient"/>
+            </Action>
+            <Action Name="createProjectApprover" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_ProjectApproverDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createProjectApprover"/>
+            </Action>
+            <Action Name="updateProjectApprover" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateProjectApproverDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateProjectApprover"/>
+            </Action>
+            <Action Name="createProjectTeam" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_ProjectTeamDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createProjectTeam"/>
+            </Action>
+            <Action Name="addProjectTeamMember" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_ProjectTeamDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_addProjectTeamMember"/>
+            </Action>
+            <Action Name="updateProjectTeam" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_UpdateProjectTeamDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateProjectTeam"/>
+            </Action>
+            <Action Name="createProjectTask" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_ProjectTaskDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_createProjectTask"/>
+            </Action>
+            <Action Name="updateProjectTask" IsBound="false">
+                <Parameter Name="data" Type="collabsphere.collabSphere_updateProjectTaskDetails"/>
+                <ReturnType Type="collabsphere.return_collabsphere_updateProjectTask"/>
+            </Action>
+            <Annotations Target="collabsphere.collabSphereEmployee/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployee/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployee/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployee/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployee/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProject/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProject/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProject/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProject/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProject/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProject/approvedStatus">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="approved"/>
+                            <PropertyValue Property="Value" String="approved"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="onhold"/>
+                            <PropertyValue Property="Value" String="onhold"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="request"/>
+                            <PropertyValue Property="Value" String="request"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="cancelled"/>
+                            <PropertyValue Property="Value" String="cancelled"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectClient/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectClient/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectClient/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectClient/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectClient/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectAprrover/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectAprrover/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectAprrover/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectAprrover/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectAprrover/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectAprrover/approvalStatus">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="approved"/>
+                            <PropertyValue Property="Value" String="approved"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="onhold"/>
+                            <PropertyValue Property="Value" String="onhold"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="request"/>
+                            <PropertyValue Property="Value" String="request"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="cancelled"/>
+                            <PropertyValue Property="Value" String="cancelled"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTeam/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTeam/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTeam/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTeam/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTeam/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTask/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTask/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTask/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTask/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTask/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTask/activityStatus">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="initiated"/>
+                            <PropertyValue Property="Value" String="initiated"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="inprogress"/>
+                            <PropertyValue Property="Value" String="inprogress"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="onhold"/>
+                            <PropertyValue Property="Value" String="onhold"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="completed"/>
+                            <PropertyValue Property="Value" String="completed"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="cancelled"/>
+                            <PropertyValue Property="Value" String="cancelled"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereProjectTask/priority">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="low"/>
+                            <PropertyValue Property="Value" String="low"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="medium"/>
+                            <PropertyValue Property="Value" String="medium"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="high"/>
+                            <PropertyValue Property="Value" String="high"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereTaskComment/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereTaskComment/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereTaskComment/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereTaskComment/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereTaskComment/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereAsset/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereAsset/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereAsset/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereAsset/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereAsset/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereAsset/assetType">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="employeeResume"/>
+                            <PropertyValue Property="Value" String="employeeResume"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="projectrequirements"/>
+                            <PropertyValue Property="Value" String="projectRequirements"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereCorporate/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereCorporate/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereCorporate/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereCorporate/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereCorporate/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereClient/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereClient/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereClient/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereClient/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereClient/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereDepartment/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereDepartment/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereDepartment/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereDepartment/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereDepartment/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployeePosition/ID">
+                <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployeePosition/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Created On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployeePosition/createdBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Created By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployeePosition/modifiedAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="Changed On"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphereEmployeePosition/modifiedBy">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="UI.ExcludeFromNavigationContext" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Core.Description" String="User's unique ID"/>
+                <Annotation Term="Common.Label" String="Changed By"/>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphere_UpdateProjectDetails/approvedStatus">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="approved"/>
+                            <PropertyValue Property="Value" String="approved"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="onhold"/>
+                            <PropertyValue Property="Value" String="onhold"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="request"/>
+                            <PropertyValue Property="Value" String="request"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="cancelled"/>
+                            <PropertyValue Property="Value" String="cancelled"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="collabsphere.collabSphere_UpdateProjectApproverData/approvalStatus">
+                <Annotation Term="Validation.AllowedValues">
+                    <Collection>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="approved"/>
+                            <PropertyValue Property="Value" String="approved"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="onhold"/>
+                            <PropertyValue Property="Value" String="onhold"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="request"/>
+                            <PropertyValue Property="Value" String="request"/>
+                        </Record>
+                        <Record Type="Validation.AllowedValue">
+                            <Annotation Term="Core.SymbolicName" String="cancelled"/>
+                            <PropertyValue Property="Value" String="cancelled"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
