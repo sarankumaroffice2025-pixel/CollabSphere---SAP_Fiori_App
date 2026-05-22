@@ -1,0 +1,23 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+    <Dialog id="editDepartmentDialog" showHeader="true" title="Edit Department" draggable="true" visible="false">
+        <content>
+            <VBox>
+                <HBox alignItems="Center" class="sapUiSmallMargin" justifyContent="SpaceBetween" width="350px">
+                    <Label id="editDepartmentNameLabel" text="Department Name" labelFor="editDepartmentNameInput" required="true"></Label>
+                    <Input id="editDepartmentNameInput" type="Text"></Input>
+                </HBox>
+                <HBox alignItems="Center" class="sapUiSmallMargin" justifyContent="SpaceBetween" width="350px">
+                    <Label id="editActiveStatusLabel" text="Active Status" labelFor="editActiveStatusSwitch"></Label>
+                    <Switch id="editActiveStatusSwitch"></Switch>
+                </HBox>
+            </VBox>
+        </content>
+        <beginButton>
+            <Button type="Emphasized" icon="sap-icon://border" press=".onUpdateDepartment"></Button>
+        </beginButton>
+        <endButton>
+            <Button text="Cancel" type="Default" press=".onCancelDepartment"></Button>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
