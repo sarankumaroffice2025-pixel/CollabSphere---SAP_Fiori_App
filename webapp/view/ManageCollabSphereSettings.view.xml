@@ -48,8 +48,8 @@
 										<Text text="{collabSphereModel>departmentName}"></Text>
 										<Text text="{path: 'collabSphereModel>activeStatus', formatter: '.activeStatus'}"></Text>
 										<HBox alignItems="Center">
-											<Button icon="sap-icon://edit" type="Transparent"></Button>
-											<Button icon="sap-icon://delete" type="Transparent"></Button>
+											<Button icon="sap-icon://edit" type="Transparent" press=".onEditDepartment"></Button>
+											<Button icon="sap-icon://delete" type="Transparent" press=".onDeleteDepartment"></Button>
 										</HBox>
 									</cells>
 								</ColumnListItem>
