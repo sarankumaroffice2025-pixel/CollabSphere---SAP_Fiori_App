@@ -9,7 +9,7 @@ This is a Frontend Fiori Application for the Project Management
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>Basic V4|
 |**Service Type**<br>SAP System (ABAP On-Premise)|
-|**Service URL**<br>https://404d3851trial-dev-collabsphere-cap-app-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/collabsphere|
+|**Service URL**<br>https://36e97acdtrial-dev-collabsphere-cap-app-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/collabsphere|
 |**Module Name**<br>comcollabspheresettings|
 |**Application Title**<br>Manage CollabSphere Settings|
 |**Namespace**<br>|
