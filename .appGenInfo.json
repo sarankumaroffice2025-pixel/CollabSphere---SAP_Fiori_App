@@ -4,7 +4,7 @@
     "generatorPlatform": "SAP Business Application Studio",
     "serviceType": "SAP System (ABAP On-Premise)",
     "metadataFilename": "",
-    "serviceUrl": "https://404d3851trial-dev-collabsphere-cap-app-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/collabsphere",
+    "serviceUrl": "https://36e97acdtrial-dev-collabsphere-cap-app-srv.cfapps.us10-001.hana.ondemand.com/odata/v4/collabsphere",
     "appName": "comcollabspheresettings",
     "appTitle": "Manage CollabSphere Settings",
     "appDescription": "An SAP Fiori application.",

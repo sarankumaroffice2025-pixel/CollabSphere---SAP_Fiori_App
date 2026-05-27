@@ -17,7 +17,7 @@ server:
           url: https://ui5.sap.com
         backend:
           - path: /odata
-            url: https://404d3851trial-dev-collabsphere-cap-app-srv.cfapps.us10-001.hana.ondemand.com
+            url: https://36e97acdtrial-dev-collabsphere-cap-app-srv.cfapps.us10-001.hana.ondemand.com
             destination: CollabSphere-CAPM-Application
     - name: fiori-tools-appreload
       afterMiddleware: compression
